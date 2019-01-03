@@ -9,16 +9,23 @@ int main (int argc, char *argv[]) {
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
         return -1;
     }
-    std::string host = argv[1];
-    short port = atoi(argv[2]);
+    std::string host = argv[1];//host name
+    short port = atoi(argv[2]);//host port number
     
     ConnectionHandler connectionHandler(host, port);
-    if (!connectionHandler.connect()) {
+    if (!connectionHandler.connect()) {//if connection was not established
         std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         return 1;
     }
 	
 	//From here we will see the rest of the ehco client implementation:
+    std::thread threadForKeyboard;
+    std::thread threadForSocket;
+
+
+
+
+
     while (1) {
         const short bufsize = 1024;
         char buf[bufsize];
