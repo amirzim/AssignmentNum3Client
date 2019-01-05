@@ -3,7 +3,9 @@ project(AssignmentNum3Client)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(AssignmentNum3Client main.cpp
+add_executable(AssignmentNum3Client
         include/connectionHandler.h
+        include/readFromKeyboard.h
         src/connectionHandler.cpp
-        src/echoClient)
+        src/echoClient.cpp
+        src/readFromKeyboard.cpp)

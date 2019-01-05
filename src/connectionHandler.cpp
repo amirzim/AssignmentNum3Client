@@ -101,3 +101,20 @@ void ConnectionHandler::close() {
         std::cout << "closing failed: connection already closed" << std::endl;
     }
 }
+
+
+void ConnectionHandler::setTermination(){
+    shouldTerminate= true;
+}
+
+bool ConnectionHandler::getShouldTerminate() {
+    return shouldTerminate;
+}
+
+void ConnectionHandler::ConnectOnline(){
+    online=true;
+}
+
+bool ConnectionHandler::getConnectedStatus() {
+    return online;
+}

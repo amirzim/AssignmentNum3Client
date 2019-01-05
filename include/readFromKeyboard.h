@@ -1,32 +1,44 @@
-#ifndef READ_FROM_KEYBOARD_H__
-#define READ_FROM_KEYBOARD_H__
+#ifndef READFROMKEYBOARD__
+#define READFROMKEYBOARD__
 
-#include <connectionHandler.h>
+#include "connectionHandler.h"
 #include <mutex>
 
+
+using namespace std;
+
+
 class readFromKeyboard{
+
 private:
     ConnectionHandler &connectionHandler;
-    bool
+    bool Terminate;
 
+
+public:
+    readFromKeyboard(ConnectionHandler &connectionHandler1);
+
+
+    void run();
+
+    bool encode(std::string input);// my way, look at parsing in "start" method in restaurant (assignment 1)
+
+    bool Register(vector<string> parameters);
+
+    bool Login(vector<string> parameters);
+
+    bool Logout();
+
+    bool Follow (vector<string> parameters);
+
+    bool Post (vector<string> parameters);
+
+    bool PrivateMessage (vector<string> parameters);
+
+    bool UserList();
+
+    bool Stat (vector<string> parameters);
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
