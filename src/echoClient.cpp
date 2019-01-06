@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include "../include/connectionHandler.h"
 #include "../include/readFromKeyboard.h"
-
+#include "../include/readFromServer.h"
+#include <thread>
+using namespace std;
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
@@ -20,6 +22,13 @@ int main (int argc, char *argv[]) {
     }
 
     readFromKeyboard readFromKeyboard1(connectionHandler);
+    readFromServer readFromServer1(connectionHandler);
 
+    thread thread1(ref(readFromServer1));
+    thread thread2(ref(readFromKeyboard1));
 
+    thread1.join();
+    thread2.join();
+
+    return 0;
 }

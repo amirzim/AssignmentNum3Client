@@ -19,7 +19,7 @@ public:
     readFromKeyboard(ConnectionHandler &connectionHandler1);
 
 
-    void run();
+    void operator()();
 
     bool encode(std::string input);// my way, look at parsing in "start" method in restaurant (assignment 1)
 
