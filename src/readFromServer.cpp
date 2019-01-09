@@ -11,6 +11,7 @@ short readFromServer::bytesToShort(char *bytesArr){
 readFromServer::readFromServer(ConnectionHandler &connectionHandler1):connectionHandler(connectionHandler1){}
 
 void readFromServer::operator()() {
+    std::cout<<"INSIDE readfromserver run method"<<std::endl;
     while(!connectionHandler.getShouldTerminate()){
         char OpcodeFromServer[2];
         if(connectionHandler.getBytes(OpcodeFromServer,2)){
@@ -19,8 +20,10 @@ void readFromServer::operator()() {
                 PrintNotification();
             if (codeFromServ==10)
                 PrintAck();
-            if (codeFromServ==11)
+            if (codeFromServ==11) {
                 PrintError();
+                std::cout<<"we recieved an error from the server"<<std::endl;
+            }
         }
     }
 

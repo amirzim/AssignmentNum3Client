@@ -119,7 +119,7 @@ bool readFromKeyboard::Login(vector<string> parameters) {
 
 bool readFromKeyboard::Logout() {
     char bytesToSend[2];
-    shortToBytes(3,bytesToSend);
+    shortToBytes((short)3,bytesToSend);
     return connectionHandler.sendBytes(bytesToSend,2);
 }
 
@@ -132,7 +132,7 @@ bool readFromKeyboard::Follow(vector<string> parameters) {
     short NumToFollow= static_cast<short>(std::stoi(parameters.at(2)));
     int LengthOfBytes=5+usersWeFollowSize+NumToFollow;//size of userNames and number of '0' between them,plus 5 bytes for everything else
     char bytesToSend[LengthOfBytes];
-    shortToBytes(4,bytesToSend);
+    shortToBytes((short)4,bytesToSend);
     bytesToSend[2]=char(FollowOrUnfollow);
     char bytesOFNumToFollow[2];
     shortToBytes(NumToFollow,bytesOFNumToFollow);
@@ -160,7 +160,7 @@ bool readFromKeyboard::Post(vector<string> parameters) {
     char bytesToSend[LengthOfBytes];
     string postMsg=parameters.at(1);
     vector<char> postMsgVec(postMsg.c_str(),postMsg.c_str()+postMsg.size());
-    shortToBytes(5,bytesToSend);
+    shortToBytes((short)5,bytesToSend);
     int pointerInBytes=2;
     for (auto character: postMsgVec) {
         bytesToSend[pointerInBytes] = character;
@@ -177,7 +177,7 @@ bool readFromKeyboard::PrivateMessage(vector<string> parameters) {
     vector<char> UserNameVec(UserName.c_str(),UserName.c_str()+UserName.size());
     vector<char> contentVec(content.c_str(),content.c_str()+content.size());
     char bytesToSend[LengthOfBytes];
-    shortToBytes(6,bytesToSend);
+    shortToBytes((short)6,bytesToSend);
     int pointerInBytes=2;
     for(auto character: UserNameVec){
         bytesToSend[pointerInBytes]=character;
@@ -198,7 +198,7 @@ bool readFromKeyboard::PrivateMessage(vector<string> parameters) {
 
 bool readFromKeyboard::UserList() {
     char bytesToSend[2];
-    shortToBytes(7,bytesToSend);
+    shortToBytes((short)7,bytesToSend);
     return connectionHandler.sendBytes(bytesToSend,2);
 }
 
@@ -207,7 +207,7 @@ bool readFromKeyboard::Stat(vector<string> parameters) {
     char bytesToSend[LengthOfBytes];
     string UserName=parameters.at(1);
     vector<char> UserNameVec(UserName.c_str(),UserName.c_str()+UserName.size());
-    shortToBytes(8,bytesToSend);
+    shortToBytes((short)8,bytesToSend);
     int pointerInBytes=2;
     for(auto character: UserNameVec){
         bytesToSend[pointerInBytes]=character;

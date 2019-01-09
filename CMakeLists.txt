@@ -6,7 +6,10 @@ find_package(Boost COMPONENTS system filesystem thread REQUIRED)
 IF (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR})
 endif()
+#link_directories(${Boost_LIBRARY_DIR})
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}-std=c++11 -pthread -lboost_thread")
 
+include_directories(include)
 add_executable(AssignmentNum3Client
         include/connectionHandler.h
         include/readFromKeyboard.h
